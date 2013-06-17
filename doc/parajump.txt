@@ -1,6 +1,6 @@
 *parajump.jax*	paragraphs move that treat only space line as empty line.
 
-Version 0.1.0
+Version 0.1.1
 Copyright (C) 2012-2013 deris0126
 License: MIT license  {{{
     Permission is hereby granted, free of charge, to any person obtaining
@@ -28,11 +28,10 @@ CONTENTS					*parajump-contents*
 Introduction		|parajump-introduction|
 Interface		|parajump-interface|
   Mappings		  |parajump-mappings|
+  Variables		  |parajump-variables|
 Examples		|parajump-examples|
 Bugs			|parajump-bugs|
 Changelog		|parajump-changelog|
-
-
 
 
 ==============================================================================
@@ -62,14 +61,20 @@ MAPPINGS					*parajump-mappings*
 			and Operator-pending mode.
 
 
+------------------------------------------------------------------------------
+VARIABLES                                       *columnjump-variables*
+
+g:parajump_no_default_key_mappings   boolean (default: 0)
+	no default key mappings if this variable is not 0,
+	otherwise define default key mappings.
+
+
 ==============================================================================
 EXAMPLES					*parajump-examples*
 
-	map <c-k> <Plug>(parajump-backward)
-	map <c-j> <Plug>(parajump-forward)
-<
-
-
+This key mappings is default key mappings.
+	map { <Plug>(parajump-backward)
+	map } <Plug>(parajump-forward)
 
 
 ==============================================================================
@@ -78,11 +83,12 @@ BUGS						*parajump-bugs*
 - Currently, there is no known issue.
 
 
-
-
 ==============================================================================
 CHANGELOG					*parajump-changelog*
 
+
+0.1.1	2013-06-17
+- add default key mappings.
 
 0.1.0	2013-06-17
 - use search for increase speed.
