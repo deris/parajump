@@ -26,13 +26,13 @@
 
 " 段落後方に移動(空白のみの行を空行として扱う)
 function! parajump#backward(mode_p) "{{{2
-  return parajump#jump(-1, a:mode_p)
+  call parajump#jump(-1, a:mode_p)
 endfunction
 "}}}
 
 " 段落前方に移動(空白のみの行を空行として扱う)
 function! parajump#forward(mode_p) "{{{2
-  return parajump#jump(1, a:mode_p)
+  call parajump#jump(1, a:mode_p)
 endfunction
 "}}}
 
@@ -65,8 +65,6 @@ function! parajump#jump(direct_p, mode_p) "{{{2
     " ignore E490 error
   endtry
 
-  " とりあえず一律0を返す
-  return 0
 endfunction
 "}}}
 
