@@ -26,13 +26,13 @@
 
 " 段落後方に移動(空白のみの行を空行として扱う)
 function! parajump#backward(mode_p) "{{{2
-  call parajump#jump(-1, a:mode_p)
+  call s:paragraph_jump(-1, a:mode_p)
 endfunction
 "}}}
 
 " 段落前方に移動(空白のみの行を空行として扱う)
 function! parajump#forward(mode_p) "{{{2
-  call parajump#jump(1, a:mode_p)
+  call s:paragraph_jump(1, a:mode_p)
 endfunction
 "}}}
 
@@ -42,7 +42,7 @@ endfunction
 " 段落移動(空白のみの行を空行として扱う)
 "  direct_pが0より大きければ前方に向かって
 "  上記以外であれば後方に向かって移動する
-function! parajump#jump(direct_p, mode_p) "{{{2
+function! s:paragraph_jump(direct_p, mode_p) "{{{2
   if a:mode_p == 'v'
     normal! gv
   endif
