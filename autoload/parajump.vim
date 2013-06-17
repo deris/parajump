@@ -47,69 +47,19 @@ function! parajump#jump(direct_p, mode_p) "{{{2
     normal! gv
   endif
 
-  for i in range(v:count1)
-    let l:cur_line = line('.')
-    let l:last_line = line('$')
-
-    if s:is_end_of_jump(a:direct_p, l:cur_line, l:last_line)
-      break
-    endif
-
-    let l:cur_line_str = getline('.')
-
-    " 現在行が空白のみの行かチェック
-    if l:cur_line_str =~ "^\\s*$"
-      " 空白のみの行をスキップするモード
-      let l:skip_space_line = 1
+  if getline('.') =~ '^\s*$'
+    if a:direct_p > 0
+      call search('\S.*\n^\zs\s*$\|\%$', 'W')
     else
-      " 空白のみの行をスキップしないモード
-      let l:skip_space_line = 0
+      call search('^\s*$\n.*\S\|\%^', 'bW')
     endif
-
-    while 1
-      silent! foldopen!
-      if a:direct_p > 0
-        normal! j
-      else
-        normal! k
-      endif
-
-      if s:is_end_of_jump(a:direct_p, line('.'), l:last_line)
-        break
-      endif
-
-      let l:tmp_line = getline('.')
-      if l:skip_space_line == 1
-        if l:tmp_line !~ "^\\s*$"
-          " 空白のみの行をスキップするモードでは空白以外の行に
-          " なったら空白行をスキップしないモードに移行する
-          let l:skip_space_line = 0
-        endif
-      else
-        if l:tmp_line =~ "^\\s*$"
-          " 空白のみの行をスキップしないモードでは
-          " 空白のみの行で移動を終了する
-          break
-        endif
-      endif
-    endwhile
-  endfor
+  else
+    call search('^\s*$\|' .
+      \ (a:direct_p > 0 ? '\%$' : '\%^'),
+      \ a:direct_p > 0 ? 'W' : 'bW')
+  endif
 
   " とりあえず一律0を返す
-  return 0
-endfunction
-"}}}
-
-function! s:is_end_of_jump(direct_p, line_p, last_line_p) "{{{2
-  if a:direct_p <= 0 && a:line_p <= 1
-    " 先頭行だったら終了
-    return 1
-  endif
-  if a:direct_p > 0 && a:line_p >= a:last_line_p
-    " 終端行だったら終了
-    return 1
-  endif
-
   return 0
 endfunction
 "}}}
