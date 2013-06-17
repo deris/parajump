@@ -59,6 +59,12 @@ function! parajump#jump(direct_p, mode_p) "{{{2
       \ a:direct_p > 0 ? 'W' : 'bW')
   endif
 
+  try
+    normal! zO
+  catch
+    " ignore E490 error
+  endtry
+
   " とりあえず一律0を返す
   return 0
 endfunction
