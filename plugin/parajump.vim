@@ -1,4 +1,4 @@
-" parajump - 段落移動(空白のみの行を空行として扱う)
+" parajump - paragraphs move that treat only space line as empty line.
 " Version: 0.0.1
 " Copyright (C) 2012 deris0126
 " License: MIT license  {{{

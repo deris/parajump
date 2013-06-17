@@ -1,4 +1,4 @@
-*parajump.jax*	段落移動(空白のみの行を空行として扱う)
+*parajump.jax*	paragraphs move that treat only space line as empty line.
 
 Version 0.0.2
 Copyright (C) 2011 deris
@@ -38,9 +38,9 @@ Changelog		|parajump-changelog|
 ==============================================================================
 INTRODUCTION					*parajump-introduction*
 
-*parajump* は段落移動(空白のみの行を空行として扱う)を
-可能にするVimプラグインです
 
+*parajump* is Vim plugin for paragraphs move that treat only space line
+as empty line.
 
 
 Requirements:

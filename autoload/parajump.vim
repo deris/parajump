@@ -1,4 +1,4 @@
-" parajump - 段落移動(空白のみの行を空行として扱う)
+" parajump - paragraphs move that treat only space line as empty line.
 " Version: 0.0.1
 " Copyright (C) 2012 deris0126
 " License: MIT license  {{{
@@ -24,13 +24,13 @@
 
 " Public API {{{1
 
-" 段落後方に移動(空白のみの行を空行として扱う)
+" paragraphs backward that treat only space line as empty line.
 function! parajump#backward(mode_p) "{{{2
   call s:paragraph_jump(-1, a:mode_p)
 endfunction
 "}}}
 
-" 段落前方に移動(空白のみの行を空行として扱う)
+" paragraphs forward that treat only space line as empty line.
 function! parajump#forward(mode_p) "{{{2
   call s:paragraph_jump(1, a:mode_p)
 endfunction
@@ -39,9 +39,9 @@ endfunction
 "}}}
 
 " Private {{{1
-" 段落移動(空白のみの行を空行として扱う)
-"  direct_pが0より大きければ前方に向かって
-"  上記以外であれば後方に向かって移動する
+" paragraphs move that treat only space line as empty line.
+" move forward if direct_p is more than 0.
+" move backward is direct_p is less equal than 0.
 function! s:paragraph_jump(direct_p, mode_p) "{{{2
   if a:mode_p == 'v'
     normal! gv
