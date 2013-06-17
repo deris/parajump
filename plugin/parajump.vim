@@ -33,6 +33,12 @@ vnoremap <silent> <Plug>(parajump-forward)   :<C-u>call parajump#forward('v')<CR
 onoremap <silent> <Plug>(parajump-backward)  :<C-u>call parajump#backward('o')<CR>
 onoremap <silent> <Plug>(parajump-forward)   :<C-u>call parajump#forward('o')<CR>
 
+if !get(g:, 'parajump_no_default_key_mappings', 0)
+  map { <Plug>(parajump-backward)
+  map } <Plug>(parajump-forward)
+endif
+
+
 let g:loaded_parajump = 1
 
 " __END__
