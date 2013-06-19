@@ -44,20 +44,28 @@ endfunction
 " move backward is direct_p is less equal than 0.
 function! s:paragraph_jump(direct_p, mode_p) "{{{2
   if a:mode_p == 'v'
+    " gv at the beginning because current pos is always
+    " equal to getpos("'<") if no gv at the beginning.
     normal! gv
   endif
 
   if getline('.') =~ '^\s*$'
     if a:direct_p > 0
-      call search('\S.*\n^\zs\s*$\|\%$', 'W')
+      let pos = searchpos('\S.*\n^\zs\s*$\|\%$', 'W')
     else
-      call search('^\s*$\n.*\S\|\%^', 'bW')
+      let pos = searchpos('^\s*$\n^.*\S\|\%^', 'bW')
     endif
   else
-    call search('^\s*$\|' .
+    let pos = searchpos('^\s*$\|' .
       \ (a:direct_p > 0 ? '\%$' : '\%^'),
       \ a:direct_p > 0 ? 'W' : 'bW')
   endif
+
+  if pos == [0, 0]
+    return
+  endif
+
+  call setpos('.', [0, pos[0], pos[1], 0])
 
   try
     normal! zO
@@ -65,6 +73,10 @@ function! s:paragraph_jump(direct_p, mode_p) "{{{2
     " ignore E490 error
   endtry
 
+  if a:mode_p == 'v'
+    " gv again because zO escape visual mode
+    normal! gv
+  endif
 endfunction
 "}}}
 
