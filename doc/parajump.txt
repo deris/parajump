@@ -1,4 +1,4 @@
-*parajump.jax*	paragraphs move that treat only space line as empty line.
+*parajump.txt*	paragraphs move that treat only space line as empty line.
 
 Version 0.1.2
 Copyright (C) 2012-2013 deris0126
@@ -62,7 +62,7 @@ MAPPINGS					*parajump-mappings*
 
 
 ------------------------------------------------------------------------------
-VARIABLES                                       *columnjump-variables*
+VARIABLES                                       *parajump-variables*
 
 g:parajump_no_default_key_mappings   boolean (default: 0)
 	no default key mappings if this variable is not 0,
