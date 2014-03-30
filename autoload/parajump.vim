@@ -49,17 +49,7 @@ function! s:paragraph_jump(direct_p, mode_p) "{{{2
     normal! gv
   endif
 
-  if getline('.') =~ '^\s*$'
-    if a:direct_p > 0
-      let pos = searchpos('\S.*\n^\zs\s*$\|\%$', 'W')
-    else
-      let pos = searchpos('^\s*$\n^.*\S\|\%^', 'bW')
-    endif
-  else
-    let pos = searchpos('^\s*$\|' .
-      \ (a:direct_p > 0 ? '\%$' : '\%^'),
-      \ a:direct_p > 0 ? 'W' : 'bW')
-  endif
+  let pos = parajump#search_pos(a:direct_p)
 
   if pos == [0, 0]
     return
@@ -77,6 +67,23 @@ function! s:paragraph_jump(direct_p, mode_p) "{{{2
     " gv again because zO escape visual mode
     normal! gv
   endif
+endfunction
+"}}}
+
+function! parajump#search_pos(direct_p) "{{{2
+  if getline('.') =~ '^\s*$'
+    if a:direct_p > 0
+      let pos = searchpos('\S.*\n^\zs\s*$\|\%$', 'W')
+    else
+      let pos = searchpos('^\s*$\n^.*\S\|\%^', 'bW')
+    endif
+  else
+    let pos = searchpos('^\s*$\|' .
+      \ (a:direct_p > 0 ? '\%$' : '\%^'),
+      \ a:direct_p > 0 ? 'W' : 'bW')
+  endif
+
+  return pos
 endfunction
 "}}}
 
