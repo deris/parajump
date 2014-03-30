@@ -71,16 +71,10 @@ endfunction
 "}}}
 
 function! parajump#search_pos(direct_p) "{{{2
-  if getline('.') =~ '^\s*$'
-    if a:direct_p > 0
-      let pos = searchpos('\S.*\n^\zs\s*$\|\%$', 'W')
-    else
-      let pos = searchpos('^\s*$\n^.*\S\|\%^', 'bW')
-    endif
+  if a:direct_p > 0
+    let pos = searchpos('\S.*\n^\zs\s*$\|\%$', 'W')
   else
-    let pos = searchpos('^\s*$\|' .
-      \ (a:direct_p > 0 ? '\%$' : '\%^'),
-      \ a:direct_p > 0 ? 'W' : 'bW')
+    let pos = searchpos('^\s*$\n^.*\S\|\%^', 'bW')
   endif
 
   return pos
