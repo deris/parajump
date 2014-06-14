@@ -72,8 +72,8 @@ endfunction
 
 function! parajump#search_pos(direct_p) "{{{2
   return a:direct_p > 0 ?
-    \ searchpos('\S.*\n^\zs\s*$\|\%$', 'W') :
-    \ searchpos('^\s*\n^.*\S\|\%^', 'bW')
+    \ searchpos('\m\S.*\n^\zs\s*$\|\%$', 'W') :
+    \ searchpos('\m^\s*\n^.*\S\|\%^', 'bW')
 endfunction
 "}}}
 
